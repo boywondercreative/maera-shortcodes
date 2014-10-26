@@ -16,7 +16,6 @@ require_once( 'class-Maera_Shortcodes.php' );
 // Load individiual shortcodes.
 require_once( '/inc/alert.php' );
 require_once( '/inc/buttons.php' );
-require_once( '/inc/progress.php' );
 require_once( '/inc/grid.php' );
 
 /**

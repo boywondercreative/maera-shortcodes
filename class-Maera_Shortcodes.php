@@ -7,7 +7,6 @@ class Maera_Shortcodes {
 		'grid',
 		'alerts',
 		'buttons',
-		'progress',
 	);
 
 
@@ -18,45 +17,24 @@ class Maera_Shortcodes {
 	 */
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'maera_shortcodes_admin_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'maera_shortcodes_scripts' ) );
+		add_action( 'init', array( $this, 'maera_shortcodes_scripts' ) );  // Load in Admin dashboard only.
+
 	}
 
 
 	/**
-	 * Register scripts in the admin panel.
-	 * @todo TODO
-	 * @since 1.0.0
-	 */
-	function maera_shortcodes_admin_scripts() {
-
-		if ( ! is_admin() ) {
-			//wp_enqueue_script( 'maera_shortcodes_init', plugins_url( 'assets/js/init.js', __FILE__ ), array( 'jquery' ) );
-		} else {
-			wp_enqueue_style( 'maera_shortcodes_admin_style', plugins_url( 'assets/css/admin.css', __FILE__ ) );
-		}
-
-		if ( get_user_option( 'rich_editing' ) == 'true' ) {
-			add_filter( 'mce_external_plugins', array( $this, 'register_tinymce_plugins' ) );
-			add_filter( 'mce_buttons_3', array( $this, 'register_tinymce_buttons' ) );
-		}
-	}
-
-
-	/**
-	 * Register scripts on the front end.
+	 * Register scripts/styles in the admin panel.
 	 * @todo TODO
 	 * @since 1.0.0
 	 */
 	function maera_shortcodes_scripts() {
 
-		// Enqueue Bootstrap CSS
-		wp_enqueue_style( 'maera_shortcodes_css', plugins_url( 'assets/css/bootstrap.min.css', __FILE__ ), false, null );
-		wp_enqueue_style( 'maera_shortcodes_theme', plugins_url( 'assets/css/bootstrap-theme.min.css', __FILE__ ), false, null );
+		wp_enqueue_style( 'maera_shortcodes_admin_style', plugins_url( 'assets/css/admin.css', __FILE__ ) );
 
-		// Enqueue Bootstrap JS
-		wp_register_script( 'maera_shortcodes_js', plugins_url( 'assets/js/bootstrap.min.js', __FILE__ ), array( 'jquery' ), null, false );
-		wp_enqueue_script( 'maera_shortcodes_js' );
+		if ( get_user_option( 'rich_editing' ) == 'true' ) {
+			add_filter( 'mce_external_plugins', array( $this, 'register_tinymce_plugins' ) );
+			add_filter( 'mce_buttons_3', array( $this, 'register_tinymce_buttons' ) );
+		}
 	}
 
 
