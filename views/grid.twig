@@ -1,29 +1,4 @@
-{#
-	Open column
-#}
-{% macro open_col(element, sizes, id, extra_classes, properties) %}
-	<{{ element|default('div') }} class="{{ _self.column_classes( sizes ) }}{{ extra_classes ? ' '~extra_classes : '' }}"{{ id ? ' id="'~id~'"' : '' }}{{ properties ? ' '~properties : '' }}>
-{% endmacro %}
-
-
-{#
-	Close column
-#}
-{% macro close_col(element) %}
-	</{{ element|default('div') }}>
-{% endmacro %}
-
-
-{#
-	Calculate column classes
-#}
-{% macro column_classes(sizes) %}
-	{% if sizes is iterable %}
-		{% for size in sizes %}
-			{% if size.mobile %} u-1 u-sm-{{ size.mobile }}-12 {% endif %}
-			{% if size.tablet %} u-1 u-sm-{{ size.mobile }}-12 {% endif %}
-			{% if size.medium %} u-1 u-md-{{ size.mobile }}-12 {% endif %}
-			{% if size.large %} u-1 u-lg-{{ size.mobile }}-12 {% endif %}
-		{% endfor %}
-	{% endif %}
-{% endmacro %}
+{% import 'shell.html.twig' as shell %}
+{{ shell.open_row( 'div', null, 'bg' ) }}
+	{% include 'column.twig' with vars only %}
+{{ shell.close_row( 'div' ) }}

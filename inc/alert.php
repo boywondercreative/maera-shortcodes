@@ -5,19 +5,23 @@
  * @todo TODO
  * @since 1.0.0
  */
-function maera_alert( $type, $content = null ) {
+function maera_alerts( $params, $content = null ) {
 
 	ob_start();  // Capture the output buffer.
 
 	extract( shortcode_atts( array(
-		'type' => 'unknown',
-	), $type ) );
+		'type'  => 'unknown',
+		'id'    => 'alert-id',
+		'class' => 'alert-class',
+	), $params ) );
 
 
 	$content = preg_replace( '/<br class="nc".\/>/', '', $content );
 	$context = Timber::get_context();
-	$context['type'] = $type;  // Alert type.
-	$context['content'] = do_shortcode( $content );
+	$context['type']    = $type;                    // Alert type.
+	$context['id']      = $id;                      // Alert id.
+	$context['class']   = $class;                   // Alert class.
+	$context['content'] = do_shortcode( $content ); // Alert content.
 
 	Timber::render(
 		array(
@@ -29,4 +33,4 @@ function maera_alert( $type, $content = null ) {
 
 	return ob_get_clean();  // Return the output buffer and clear.
 }
-add_shortcode( 'maera_notification', 'maera_alert' );
+add_shortcode( 'maera_alert', 'maera_alerts' );

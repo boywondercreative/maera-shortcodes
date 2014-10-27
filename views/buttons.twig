@@ -1,1 +1,3 @@
-<a type="button" class="{{ button.type }}" href="{{ button.href }}">{{ content }}</a> 
+{% import 'shell.html.twig' as shell %}
+
+<a type="button" class="{{ shell.button_classes(color, size, type, extra) }}" href="{{ href }}">{{ content }}</a>

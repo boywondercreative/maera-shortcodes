@@ -5,26 +5,26 @@
  * @todo TODO
  * @since 1.0.0
  */
-function maera_buttons( $button, $content = null ) {
+function maera_buttons( $params, $content = null ) {
 
 	ob_start();  // Capture the output buffer.
 
-
-
 	extract( shortcode_atts( array(
-		'size'  => 'default',
-		'type'  => 'default',
-		'value' => 'button',
+		'color' => 'default',
+		'size'  => 'medium',
+		'type'  => 'button-type',
+		'extra' => 'button-class',
 		'href'  => '#',
-	), $button ) );
 
+	), $params ) );
 
 	$content = preg_replace( '/<br class="nc".\/>/', '', $content );
 	$context = Timber::get_context();
-	$context['button']  = $button;  // Button size.
-	// $context['type']  = $type;  // Button type.
-	// $context['value'] = $value; // Button value.
-	// $context['href']  = $href;  // Button link.
+	$context['color'] = $color; // Button color.
+	$context['size']  = $size;  // Button size.
+	$context['type']  = $type;  // Button type.
+	$context['extra'] = $extra; // Button extra classes.
+	$context['href']  = $href;  // Button link.
 
 	$context['content'] = do_shortcode( $content );
 

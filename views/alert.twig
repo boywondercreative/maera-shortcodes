@@ -1,1 +1,2 @@
-{{ shell.alert('warning', 'THIS IS MY MESSAGE', 'my-id', 'my-class', true) }}
+{% import 'shell.html.twig' as shell %}
+{{ shell.alert(type, content, id, class, true) }}
