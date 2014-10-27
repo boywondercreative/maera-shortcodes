@@ -1,4 +1,8 @@
 {% import 'shell.html.twig' as shell %}
-{{ shell.open_row( 'div', null, 'bg' ) }}
-	{% include 'column.twig' with vars only %}
+{{ shell.open_row( 'div' ) }}
+
+{{ shell.open_col( 'div', sizes, id, extra_classes, properties ) }}
+	{{ content }}
+{{ shell.close_col( 'div' ) }}
+
 {{ shell.close_row( 'div' ) }}

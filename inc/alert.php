@@ -15,8 +15,6 @@ function maera_alerts( $params, $content = null ) {
 		'class' => 'alert-class',
 	), $params ) );
 
-
-	$content = preg_replace( '/<br class="nc".\/>/', '', $content );
 	$context = Timber::get_context();
 	$context['type']    = $type;                    // Alert type.
 	$context['id']      = $id;                      // Alert id.

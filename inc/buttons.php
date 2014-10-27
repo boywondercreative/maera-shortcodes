@@ -15,18 +15,15 @@ function maera_buttons( $params, $content = null ) {
 		'type'  => 'button-type',
 		'extra' => 'button-class',
 		'href'  => '#',
-
 	), $params ) );
 
-	$content = preg_replace( '/<br class="nc".\/>/', '', $content );
 	$context = Timber::get_context();
-	$context['color'] = $color; // Button color.
-	$context['size']  = $size;  // Button size.
-	$context['type']  = $type;  // Button type.
-	$context['extra'] = $extra; // Button extra classes.
-	$context['href']  = $href;  // Button link.
-
-	$context['content'] = do_shortcode( $content );
+	$context['color'] = $color;                     // Button color.
+	$context['size']  = $size;                      // Button size.
+	$context['type']  = $type;                      // Button type.
+	$context['extra'] = $extra;                     // Button extra classes.
+	$context['href']  = $href;                      // Button link.
+	$context['content'] = do_shortcode( $content ); // Button content.
 
 	Timber::render(
 		array(
