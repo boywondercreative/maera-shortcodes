@@ -17,7 +17,20 @@ class Maera_Shortcodes {
 	 */
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'maera_shortcodes_scripts' ) );  // Load in Admin dashboard only.
+		add_action( 'init', array( $this, 'maera_shortcodes_scripts' ) );  // Load scripts in Admin dashboard only.
+		add_filter( 'maera/timber/locations', array( $this, 'maera_shortcodes_twigs_location' ), 1 );
+	}
+
+
+	/**
+	 * Add the twig "/views" folder.
+	 * @todo TODO
+	 * @since 1.0.0
+	 */
+	function maera_shortcodes_twigs_location( $locations ) {
+
+		$locations[] = dirname( __FILE__ ) . '/views';
+		return $locations;
 
 	}
 
@@ -67,7 +80,5 @@ class Maera_Shortcodes {
 		return $plugins;
 	}
 
-} //End Class
-
-// Instantiate the class.
-$maera_shortcodes = new Maera_Shortcodes();
+	// End Methods
+} // End Class

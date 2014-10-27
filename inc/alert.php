@@ -13,9 +13,9 @@ function maera_alerts( $params, $content = null ) {
 		'type'  => 'unknown',
 		'id'    => 'alert-id',
 		'class' => 'alert-class',
-	), $params ) );
+	), $params ) ); // Set some defaults in case the user forgets a parameter.
 
-	$context = Timber::get_context();
+	$context            = Timber::get_context();
 	$context['type']    = $type;                    // Alert type.
 	$context['id']      = $id;                      // Alert id.
 	$context['class']   = $class;                   // Alert class.

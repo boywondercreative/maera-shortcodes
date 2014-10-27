@@ -18,15 +18,6 @@ require_once( '/inc/alert.php' );
 require_once( '/inc/buttons.php' );
 require_once( '/inc/grid.php' );
 
-/**
- * Add the twig "/views" folder.
- * @todo TODO
- * @since 1.0.0
- */
-function maera_shortcodes_twigs_location( $locations ) {
 
-	$locations[] = dirname( __FILE__ ) . '/views';
-	return $locations;
-
-}
-add_filter( 'maera/timber/locations', 'maera_shortcodes_twigs_location', 1 );
+// Instantiate the class.
+$maera_shortcodes = new Maera_Shortcodes();
