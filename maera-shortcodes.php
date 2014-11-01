@@ -9,15 +9,21 @@ Author: Press Codes
 Author URI: http://press.codes
 */
 
-// Load the main class.
-require_once( 'class-Maera_Shortcodes.php' );
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-// Load individiual shortcodes.
-require_once( '/inc/alert.php' );
-require_once( '/inc/buttons.php' );
-require_once( '/inc/grid.php' );
+if ( ! defined( 'MAERA_SHORTCODES_PATH' ) ) {
+	define( 'MAERA_SHORTCODES_PATH', dirname( __FILE__ ) );
+}
 
+if ( ! defined( 'MAERA_SHORTCODES_URL' ) ) {
+	define( 'MAERA_SHORTCODES_URL', plugin_dir_url( __FILE__ ) );
+}
 
-// Instantiate the class.
-$maera_shortcodes = new Maera_Shortcodes();
+//Load the main class.
+require_once( __DIR__ . '/includes/class-Maera_Shortcodes.php');
+
+Maera_Shortcodes::get_instance();

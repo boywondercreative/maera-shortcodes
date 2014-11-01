@@ -1,5 +1,9 @@
 <?php
 
+/**
+* The main Maera_Shortcodes class
+*/
+
 class Maera_Shortcodes {
 
 	// Array of available shortcodes
@@ -9,17 +13,47 @@ class Maera_Shortcodes {
 		'buttons',
 	);
 
+	private static $instance;
+
+
+	/**
+	 * Get the class instance
+	 * @todo  TODO
+	 * @since 1.0.0
+	 */
+	public static function get_instance() {
+
+		if ( null == self::$instance ) {
+			self::$instance = new self;
+		}
+
+		return self::$instance;
+	}
+
+
 
 	/**
 	 * Class Constructor
-	 * @todo TODO
+	 * @todo  TODO
 	 * @since 1.0.0
 	 */
 	public function __construct() {
 
+		$this->requires();
 		add_action( 'init', array( $this, 'maera_shortcodes_scripts' ) );  // Load scripts in Admin dashboard only.
 		add_filter( 'maera/timber/locations', array( $this, 'maera_shortcodes_twigs_location' ), 1 );
+
 	}
+
+
+	/**
+	 * Requires
+	 * @todo  TODO
+	 * @since 1.0.0
+	 */
+	 static function requires() {
+	 	require_once( __DIR__ . '/alert.php');
+	 }
 
 
 	/**
@@ -29,7 +63,7 @@ class Maera_Shortcodes {
 	 */
 	function maera_shortcodes_twigs_location( $locations ) {
 
-		$locations[] = dirname( __FILE__ ) . '/views';
+		$locations[] = MAERA_SHORTCODES_PATH . '/views';
 		return $locations;
 
 	}
@@ -37,12 +71,13 @@ class Maera_Shortcodes {
 
 	/**
 	 * Register scripts/styles in the admin panel.
-	 * @todo TODO
+	 * @todo  TODO
 	 * @since 1.0.0
 	 */
 	function maera_shortcodes_scripts() {
 
-		wp_enqueue_style( 'maera_shortcodes_admin_style', plugins_url( 'assets/css/admin.css', __FILE__ ) );
+		wp_register_style( 'maera-shortcodes', trailingslashit( MAERA_SHORTCODES_URL ) . 'assets/css/admin.css' );
+		wp_enqueue_style( 'maera-shortcodes' );
 
 		if ( get_user_option( 'rich_editing' ) == 'true' ) {
 			add_filter( 'mce_external_plugins', array( $this, 'register_tinymce_plugins' ) );
@@ -74,7 +109,7 @@ class Maera_Shortcodes {
 	function register_tinymce_plugins( $plugins ) {
 
 		foreach ( $this->shortcodes as $shortcode ) {
-			$plugins['maera_' . $shortcode] = plugins_url( 'assets/js/plugins/' . $shortcode . '.js', __FILE__ );
+			$plugins['maera_' . $shortcode] = trailingslashit( MAERA_SHORTCODES_URL ) .  'assets/js/plugins/' . $shortcode . '.js';
 		}
 
 		return $plugins;

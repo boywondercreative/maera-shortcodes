@@ -9,12 +9,10 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#insert').click(function() {
-			var color = $('select[name=color]').val();
-			var size = $('select[name=size]').val();
 			var type = $('select[name=type]').val();
-			var extra = $('input[name=extra]').val();
+			var size = $('select[name=size]').val();
 			var link = $('input[name=link]').val();
-			top.tinymce.activeEditor.insertContent('[maera_button color="' + color + '" size="' + size + '" type="' + type + '" extra="' + extra + '" href="' + link + '"]Button Text[/maera_button]');
+			top.tinymce.activeEditor.insertContent('<a href="' + link + '" class="[maera_button_'+ type +'_'+ size +']" role="button">Button Text</a>');
 			top.tinymce.activeEditor.windowManager.close();
 		});
 	});
@@ -24,8 +22,8 @@
 	<div id="shortcode_popup" class="container">
 		<form role="form">
 			<div class="form-group">
-				<label for="color">Color</label>
-				<select class="form-control"id="color" name="color">
+				<label for="type">Type</label>
+				<select class="form-control"id="type" name="type">
 					<option value="default">Default</option>
 					<option value="primary">Primary</option>
 					<option value="success">Success</option>
@@ -38,26 +36,17 @@
 			<div class="form-group">
 				<label for="size">Size</label>
 				<select class="form-control"id="size" name="size">
-					<option value="extra-small">Mini</option>
+					<option value="extra_small">Extra Small</option>
 					<option value="small">Small</option>
 					<option value="medium" selected>Normal</option>
 					<option value="large">Large</option>
-					<option value="extra-large">Extra Large</option>
+					<option value="extra_large">Extra Large</option>
 				</select>
-			</div>
-			<div class="form-group">
-				<label for="type">Type*</label>
-				<input type="text" class="form-control" id="type" name="type" placeholder="button-type" onclick="this.select()" />
-			</div>
-			<div class="form-group">
-				<label for="extra">Extra Classes</label>
-				<input type="text" class="form-control" id="extra" name="extra" placeholder="my-class" onclick="this.select()" />
 			</div>
 			<div class="form-group">
 				<label for="link">Link</label>
 				<input type="text" class="form-control" id="link" name="link" placeholder="#" onclick="this.select()" />
 			</div>
-			<p class="label">*Some shells and frameworks may require you to specify a button type.</p>
 		  <button type="submit" id="insert" class="btn btn-sm btn-primary">Insert</button>
 		</form>
 	</div>
