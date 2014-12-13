@@ -12,7 +12,7 @@
 			var type = $('select[name=type]').val();
 			var size = $('select[name=size]').val();
 			var link = $('input[name=link]').val();
-			top.tinymce.activeEditor.insertContent('<a href="' + link + '" class="[maera_button_'+ type +'_'+ size +']" role="button">Button Text</a>');
+			top.tinymce.activeEditor.insertContent('<button href="' + link + '" class="[maera_button_'+ type +'_'+ size +']" role="button">Button Text</button>');
 			top.tinymce.activeEditor.windowManager.close();
 		});
 	});
